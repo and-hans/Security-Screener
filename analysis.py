@@ -52,7 +52,7 @@
 
 
 
-# Earnings per share (EPS)
+# 
 
 
 
