@@ -1,3 +1,11 @@
+import pandas as pd
+
+apple1y = pd.read_csv("AAPL1.csv", index_col=0)
+apple5y = pd.read_csv("AAPL5.csv", index_col=0)
+
+for col in apple1y:
+  print(apple1y[col])
+
 # Simple moving average (SMA)
 
 
