@@ -51,16 +51,15 @@ for col in apple1y:
 # Average volume
 
 
+# Earnings Per Share (EPS)
+
+
 
 # Price-Earning Ratio (P/E)
 
 
 
 # Bid-ask spread
-
-
-
-# 
 
 
 
