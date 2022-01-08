@@ -1,15 +1,23 @@
+# Most calculations are done for only 1 day
+# Obviously, more calculations have to be done to make a graph
+# Some calculations may be wrong due to date issues
+# Use the yf.download() function to get new data
+# Yfinance api slows down the program
+
 import pandas as pd
 import yfinance as yf
 
-# Data is from January 7th 2021 to January 6th 2022
+# Data is in business days
+
 apple1y = pd.read_csv("AAPL1Y.csv", index_col=0)  # 253 items
 apple5y = pd.read_csv("AAPL5Y.csv", index_col=0)  # 1259 items
 aapl = yf.Ticker("AAPL")
 
 # Stocks put into a list for 1 year and 5 years data
+
 closing1y = []
 for stock in apple1y["Adj Close"]:
-    closing1y.append(stock)
+    closing1y.append(round(stock, 2))
 
 volume1y = []
 for vol in apple1y["Volume"]:
@@ -27,6 +35,20 @@ closingList20 = closing1y[232:]
 
 closingList14 = closing1y[238:]
 closingList3 = closing1y[249:]
+
+# General stock information for current day
+earnings = aapl.earnings["Earnings"][2021]
+shares_outstanding = aapl.info['sharesOutstanding']
+
+bid = aapl.info['bid']
+ask = aapl.info['ask']
+
+current_price = aapl.info['regularMarketPrice']
+
+market_cap = aapl.info['marketCap']
+
+ebitda = aapl.info['ebitda']
+enterprise_to_ebitda_ = aapl.info['enterpriseToEbitda']
 
 # Simple moving average (SMA) 10 days, 50 days, 100 days, and 200 days
 # 12 and 24 days too for the MACD calculations
@@ -88,10 +110,15 @@ for i in range(5):
             EMAprevious = EMA26
 
 # Moving average convergence divergence (MACD) (12,26)
+
 MACD = round(EMA12 - EMA26, 2)
 
 # Relative strength index (RSI)
 
+
+# Kairi Relative Index (KRI) for 20 days
+
+KRI = ((closing1y[-1]-SMA20)/SMA20)*100
 
 # Standard deviation (SD) 20 days for January 6th, 2022
 
@@ -111,7 +138,7 @@ upper_band = SMA20 + (standard_deviation*2)
 lower_band = SMA20 - (standard_deviation*2)
 
 # Stochastic oscillator 14 days January 6th 2022
-# Calculations may be wrong
+
 lowest_low = min(closingList14)
 highest_high = max(closingList14)
 lowest_low2 = min(closing1y[237:251])
@@ -126,6 +153,7 @@ percentK3 = ((closing1y[-3] - lowest_low3)/(highest_high3 - lowest_low3)) * 100
 percentD = round((percentK+percentK2+percentK3)/3, 2)  # slow stochastic
 
 # On-balance volume (OBV) for January 6th 2022
+
 previous_OBV = volume1y[-2]  # just for interpretation sake
 current_volume = volume1y[-1]
 OBV = 0
@@ -157,7 +185,6 @@ senkou_spanB = (period_high52+period_low52)/2  # leading span B
 
 chikou_span = closingList26  # lagging span
 
-
 # 52-week high and 52-week low
 
 fiftytwo_week_high = period_high52
@@ -166,16 +193,28 @@ fiftytwo_week_low = period_low52
 
 # Average volume for 30 days. December 7th 2022 to January 6th 2022
 
-average_volume = round(sum(volume1y[222:])/30, 2)
+average_volume = round(sum(volume1y[231:])/22, 2)
 
 # Earnings Per Share (EPS)
 
+EPS = round(earnings/shares_outstanding, 2)
 
 # Price-Earning Ratio (P/E)
 
+pe_ratio = round(current_price/EPS, 2)
 
-# Bid-ask spread
 
+# Bid-ask
 
-# Growth (1m, 3m, 1y, 5y)
-growth1m = 
+bid_ask = round(abs(ask-bid), 3)
+bid_ask_percent = round((bid_ask/ask)*100, 3)
+
+# Growth (1m, 3m, 6m, 1y) from December 7th 2021 to January 6th 2022
+
+growth1m = round(closing1y[-1] - closing1y[231], 2)
+
+growth3m = round(closing1y[-1] - closing1y[159], 2)
+
+growth6m = round(closing1y[-1] - closing1y[124], 2)
+
+growth1y = round(closing1y[-1] - closing1y[0], 2)
