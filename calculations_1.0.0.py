@@ -1,9 +1,3 @@
-# Most calculations are done for only 1 day
-# Obviously, more calculations have to be done to make a graph
-# Some calculations may be wrong due to date issues
-# Use the yf.download() function to get new data
-# Yfinance api slows down the program
-
 import pandas as pd
 import yfinance as yf
 
@@ -48,7 +42,7 @@ current_price = aapl.info['regularMarketPrice']
 market_cap = aapl.info['marketCap']
 
 ebitda = aapl.info['ebitda']
-enterprise_to_ebitda_ = aapl.info['enterpriseToEbitda']
+enterprise_multiple = aapl.info['enterpriseToEbitda']
 
 # Simple moving average (SMA) 10 days, 50 days, 100 days, and 200 days
 # 12 and 24 days too for the MACD calculations
