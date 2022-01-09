@@ -29,6 +29,7 @@ Analysis tools used:
 
 
 To do:
+- RSI still needs to be calculated.
 - Use the equations to create more data points. Subsequently, use matplotlib to graph the data.
 - Create candlestick chart.
 - Combine analysis tools (the calculations) and the candlestick chart together.
