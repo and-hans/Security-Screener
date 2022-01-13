@@ -34,7 +34,8 @@ To do:
 - Create candlestick chart.
 - Combine analysis tools (the calculations) and the candlestick chart together.
 - [Optional] Create fibonacci retracement levels. (23.6%, 38.2%, 50%, 61.8%, and 78.6%)
-- Clean up code by using classes and functions.
+- Clean up code by using OOP, functions, and loops.
+- Create SQLite database for data.
 
 Issues:
 - Some calculations don't match up with online data.
