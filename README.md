@@ -1,5 +1,7 @@
 # Security-Screener
 
+(Whatever views on technical analysis you have, it's still cool to calculate)
+
 Still in progress.
 Version: 1.0.0
 
