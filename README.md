@@ -1,4 +1,4 @@
-# Security-Screener
+# Technical Analysis Tool Calculator
 
 (Whatever views on technical analysis you have, it's still cool to calculate)
 
